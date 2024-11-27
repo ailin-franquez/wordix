@@ -87,45 +87,18 @@ function seleccionarOpcion(){
  * @param array $partidas
  */
 function mostrarPartida($numero, $partidas){
-    $cant=count($partidas);
-    $i=0;
-    while($i<$cant){
-        if ($partidas[$i]["jugador"]== ""){
-            break;
-        }
-        $i++;
+    //verificar numero afuera con el modulo 5
+    $numero=$numero-1;
+    echo "****************************************************************\n";
+    echo "Partida WORDIX ".($numero+1).": palabra ".$partidas[$numero]["palabra wordix"]."\n";
+    echo "Jugador: ".$partidas[$numero]["jugador"]."\n";
+    echo "Puntaje: ".$partidas[$numero]["puntaje"]." puntos\n";
+    if($partidas[$numero]["intentos"] != 0){
+        echo "Intentos: adivino la palabra en ".$partidas[$numero]["intentos"]." intentos";
+    }else{
+        echo "Intentos: no adivino la palabra";
     }
-    //el while cuenta las partidas que se jugaron
-    //todo el while de arriba es solo para mostrar la cantidad de partidas disponibles a ver y jugadas
-
-    $logico=true;
-    while($partidas[$numero]["jugador"] == "" && $logico ){
-        echo "la partida solicitada aun no fue jugada\n";
-        echo "por favor ingrese un numero de partida valido o 0 para salir: ";
-        $numero=solicitarNumeroEntre(0, $i); //si el numero de partida no fue jugado muestra hastq eu numero de partida si fue jugado
-        if($numero == 0){
-            $logico=false;
-            $numero=$numero+1;
-        }
-        $numero=$numero-1;
-        
-    }
-    if($logico){
-        echo "****************************************************************\n";
-        echo "Partida WORDIX ".($numero+1).": palabra ".$partidas[$numero]["palabra wordix"]."\n";
-        echo "Jugador: ".$partidas[$numero]["jugador"]."\n";
-        echo "Puntaje: ".$partidas[$numero]["puntaje"]." puntos\n";
-        if($partidas[$numero]["intentos"] != "no adivino la palabra"){
-            echo "Intentos: adivino la palabra en ".$partidas[$numero]["intentos"]." intentos";
-        }else{
-            echo "Intentos: ".$partidas[$numero]["intentos"];
-        }
-        echo "\n****************************************************************\n";
-    }elseif(!$logico){
-        echo "salida";
-    }
-    
-    
+    echo "\n****************************************************************\n"; 
 }
 
 
@@ -145,19 +118,167 @@ function agregarPalabra($arregloPalabras,$palabra){
 
 
 //MODULO 8
-/**
- * 
+/**busca la primer partida ganada de un jugador en base al nombre y el array de partidas, retorna el indice de la partida o -1 si no gano ninguna
+ * @param array $partidas
+ * @param string $nombre
+ * @return int $indice
  */
+/* 
+$nombre=solicitarJugador();
+$cant=count($partidas);
+$logico=true;
+do{
+    $i=0;
+    while($i<$cant && $logico){
+        if($partidas[$i]["jugador"]== $nombre){
+            $logico=false;
+        }
+        $i++;
+    }
+    if($logico){
+        echo "el jugador ingresado no existe\n";
+        $nombre=solicitarJugador(); //cambiar strtolower por el 10 cuando este listo
+    }
+}while($logico);
+ */
+function partidaGanada($partidas, $nombre){
+
+    $cant=count($partidas);
+    $logico=true;
+    do{
+        $i=0;
+        while($i<$cant && $logico){
+            if($partidas[$i]["jugador"]== $nombre){
+                $logico=false;
+            }
+            $i++;
+        }
+        if($logico){
+            echo "el jugador ingresado no existe\n";
+            $nombre=solicitarJugador(); //cambiar strtolower por el 10 cuando este listo
+        }
+    }while($logico);
+
+    $i=0;
+    $cant=count($partidas);
+    $logico=true;
+    $indice=-1;
+    while($i<$cant && $logico){
+        if ($partidas[$i]["jugador"]==$nombre){
+            if($partidas[$i]["intentos"] != 0){
+                $indice=$i;
+                
+            }elseif($partidas[$i]["intentos"]== 0){
+                $indice=-1;
+                
+            }
+            $logico=false;
+        }
+        $i++;
+    }
+    return $indice;
+}
+
 
 //MODULO 9
-/**
- * 
+/** cuenta el resumen total de un jugador especifico en base al nombre y retorna los datos como un array asociativo
+ * @param array $partidas
+ * @param string $jugador
+ * @return array $resumenJugador
  */
+function resumenJugador($partidas,$jugador){
+    $cant=count($partidas);
+    $logico=true;
+    do{
+        $i=0;
+        while($i<$cant && $logico){
+            if($partidas[$i]["jugador"]== $jugador){
+                $logico=false;
+            }
+            $i++;
+        }
+        if($logico){
+            echo "el jugador ingresado no existe\n";
+            $jugador=solicitarJugador(); //cambiar strtolower por el 10 cuando este listo
+        }
+    }while($logico);
+
+    $cant=count($partidas);
+    $cantPartidasJugadas=0;
+    $acumPuntos=0;
+    $acumVictorias=0;
+    $intento1=0;
+    $intento2=0;
+    $intento3=0;
+    $intento4=0;
+    $intento5=0;
+    $intento6=0;
+    for($i=0;$i<$cant;$i++){
+        if($partidas[$i]["jugador"]==$jugador){
+            $cantPartidasJugadas++;
+            $acumPuntos+=$partidas[$i]["puntaje"];
+
+            if($partidas[$i]["intentos"]!=0){
+                $acumVictorias++;
+
+                if($partidas[$i]["intentos"]==1){
+                    $intento1++;
+                }elseif($partidas[$i]["intentos"]==2){
+                    $intento2++;
+                }elseif($partidas[$i]["intentos"]==3){
+                    $intento3++;
+                }elseif($partidas[$i]["intentos"]==4){
+                    $intento4++;
+                }elseif($partidas[$i]["intentos"]==5){
+                    $intento5++;
+                }elseif($partidas[$i]["intentos"]==6){
+                    $intento6++;
+                }
+            }
+        }
+    }
+
+    $resumenJugador=[
+        "jugador"=> $jugador,
+        "partidas"=> $cantPartidasJugadas,
+        "puntaje"=> $acumPuntos,
+        "victorias"=> $acumVictorias,
+        "intento1"=> $intento1,
+        "intento2"=> $intento2,
+        "intento3"=> $intento3,
+        "intento4"=> $intento4,
+        "intento5"=> $intento5,
+        "intento6"=> $intento6,
+    ];
+    return $resumenJugador;
+}
+
 
 //MODULO 10
-/**
- * 
+/**pide al usuario que ingrese un nombre de jugador y verifica que comience con una letra obligatoriamente
+ * @return string $jugador
  */
+function solicitarJugador(){
+    echo "ingrese el nombre de jugador (el nombre no puede comenzar con caracteres especiales o numeros):\n";
+    $nombre=trim(fgets(STDIN));
+    $nombre=strtolower($nombre);
+    $caracteres=str_split($nombre);
+    $logic=false;
+    $jugador="";
+    do{
+        if(!ctype_alpha($caracteres[0])){
+            echo "tipo de caracter no valido\ningrese otro nombre:\n";
+            $nombre=trim(fgets(STDIN));
+            $nombre=strtolower($nombre);
+            $caracteres=str_split($nombre);
+            $logic=true;
+        }else{
+            $logic=false;
+        }
+    }while($logic);
+    $jugador=$nombre;
+    return $jugador;
+ }
 
 //MODULO 11
 /**
