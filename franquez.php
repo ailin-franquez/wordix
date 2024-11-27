@@ -281,9 +281,30 @@ function solicitarJugador(){
  }
 
 //MODULO 11
-/**
- * 
+/**ordena con uasort un array de partidas en base al nombre del jugador y las palabras
+ * @param array $partidas
+ * @param string $nombre
  */
+function ordenarPartidas($partidas,){
+    function ccc($a,$b){
+        if($a["jugador"]==$b["jugador"]){
+            if($a["palabra wordix"]==$b["palabra wordix"]){
+                $orden=0;
+            }elseif($a["palabra wordix"]<$b["palabra wordix"]){
+                $orden=-1;
+            }else{
+                $orden=1;
+            }
+        }elseif($a["jugador"]<$b["jugador"]){
+            $orden=-1;
+        }else{
+            $orden=1;
+        }
+        return $orden;
+    }
+    uasort($partidas,'ccc');
+    print_r($partidas);
+}
 
 
 
