@@ -171,7 +171,7 @@ function leerPalabra5Letras()
 
 
 /**
- * Inicia una estructura de datos Teclado. La estructura es de tipo: ¿Indexado, asociativo o Multidimensional?
+ * Inicia una estructura de datos Teclado. La estructura es de tipo: ¿Indexado, asociativo o Multidimensional? asociativo
  *@return array
  */
 function iniciarTeclado()
@@ -331,14 +331,51 @@ function esIntentoGanado($estructuraPalabraIntento)
     return $ganado;
 }
 
-/**
+/**calcula el putaje en base a cantidad de intentos y letras usadas
  * ****COMPLETAR***** documentación de la intefaz
  */
-function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
+function obtenerPuntajeWordix($numIntento,$palabraIntento)
 {
+    $acumPuntaje=0;
+    if($numIntento == 1){
+        $puntos=6;
+        $acumPuntaje+=$puntos;
+    }
+    elseif($numIntento == 2){
+        $puntos=5;
+        $acumPuntaje+=$puntos;
+    }
+    elseif($numIntento == 3){
+        $puntos=4;
+        $acumPuntaje+=$puntos;
+    }
+    elseif($numIntento == 4){
+        $puntos=3;
+        $acumPuntaje+=$puntos;
+    }
+    elseif($numIntento == 5){
+        $puntos=2;
+        $acumPuntaje+=$puntos;
+    }
+    elseif($numIntento == 6){
+        $puntos=1;
+        $acumPuntaje+=$puntos;
+    }
 
-    /* ****COMPLETAR***** cuerpo de la función*/
-    return 0;
+    $letrasPalabra=str_split($palabraIntento); //para separar las letras de la palabra en individual
+    $cantLetras=count($letrasPalabra); //por las dudas por si sale error con el numero 5
+    for($i=0;$i<$cantLetras;$i++){
+        if($letrasPalabra[$i]=="A"||$letrasPalabra[$i]=="E"||$letrasPalabra[$i]=="I"||$letrasPalabra[$i]=="O"||$letrasPalabra[$i]=="U"){
+            $acumPuntaje+=1;
+        }
+        elseif($letrasPalabra[$i]=="B"||$letrasPalabra[$i]=="C"||$letrasPalabra[$i]=="D"||$letrasPalabra[$i]=="F"||$letrasPalabra[$i]=="G"||$letrasPalabra[$i]=="H"||$letrasPalabra[$i]=="J"||$letrasPalabra[$i]=="K"||$letrasPalabra[$i]=="L"||$letrasPalabra[$i]=="M"){
+            $acumPuntaje+=2;
+        }
+        elseif($letrasPalabra[$i]=="N"||$letrasPalabra[$i]=="Ñ"||$letrasPalabra[$i]=="P"||$letrasPalabra[$i]=="Q"||$letrasPalabra[$i]=="R"||$letrasPalabra[$i]=="S"||$letrasPalabra[$i]=="T"||$letrasPalabra[$i]=="V"||$letrasPalabra[$i]=="W"||$letrasPalabra[$i]=="X"||$letrasPalabra[$i]=="Y"||$letrasPalabra[$i]=="Z"){
+            $acumPuntaje+=3;
+        }
+    }
+    return $acumPuntaje;
 }
 
 /**
@@ -373,7 +410,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
     if ($ganoElIntento) {
         $nroIntento--;
-        $puntaje = obtenerPuntajeWordix();
+        $puntaje = obtenerPuntajeWordix($nroIntento,$palabraIntento);
         echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
     } else {
         $nroIntento = 0; //reset intento

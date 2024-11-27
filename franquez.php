@@ -36,23 +36,23 @@ function cargarColeccionPalabras()
 function cargarPartidas(){
     //array multidimencional $coleccionPartidas
     $coleccionPartidas=[
-        ["palabra wordix"=>"","jugador"=>"","intentos"=> "","puntaje"=>"" ],
-        ["palabra wordix"=>"","jugador"=>"","intentos"=> "","puntaje"=>"" ],
-        ["palabra wordix"=>"","jugador"=>"","intentos"=> "","puntaje"=>"" ],
-        ["palabra wordix"=>"","jugador"=>"","intentos"=> "","puntaje"=>"" ],
-        ["palabra wordix"=>"","jugador"=>"","intentos"=> "","puntaje"=>"" ],
-        ["palabra wordix"=>"","jugador"=>"","intentos"=> "","puntaje"=>"" ],
-        ["palabra wordix"=>"","jugador"=>"","intentos"=> "","puntaje"=>"" ],
-        ["palabra wordix"=>"","jugador"=>"","intentos"=> "","puntaje"=>"" ],
-        ["palabra wordix"=>"","jugador"=>"","intentos"=> "","puntaje"=>"" ],
-        ["palabra wordix"=>"","jugador"=>"","intentos"=> "","puntaje"=>"" ],
-        ["palabra wordix"=>"","jugador"=>"","intentos"=> "","puntaje"=>"" ],
+        ["palabra wordix"=>"QUESO","jugador"=>"majo","intentos"=> 0,"puntaje"=>0 ],
+        ["palabra wordix"=>"CASAS","jugador"=>"rudolf","intentos"=> 3,"puntaje"=>14 ],
+        ["palabra wordix"=>"QUESO","jugador"=>"pink2000","intentos"=> 6,"puntaje"=>10 ],
+        ["palabra wordix"=>"LUNAS","jugador"=>"zakku","intentos"=> 4 ,"puntaje"=> 13 ],
+        ["palabra wordix"=>"POLLO","jugador"=>"pink2000","intentos"=> 5 ,"puntaje"=>11 ],
+        ["palabra wordix"=>"GOTAS","jugador"=>"majo","intentos"=> 2 ,"puntaje"=>15 ],
+        ["palabra wordix"=>"TINTO","jugador"=>"zakku","intentos"=> 1 ,"puntaje"=>17 ],
+        ["palabra wordix"=>"GOTAS","jugador"=>"zakku","intentos"=> 3 ,"puntaje"=> 14],
+        ["palabra wordix"=>"PIANO","jugador"=>"rudolf","intentos"=> 6 ,"puntaje"=> 10],
+        ["palabra wordix"=>"PIANO","jugador"=>"majo","intentos"=> 0 ,"puntaje"=> 0],
+        ["palabra wordix"=>"VERDE","jugador"=>"pink2000","intentos"=> 3 ,"puntaje"=>14 ],
     ];
     return $coleccionPartidas;
 }
 
 //MODULO 3
-/**muestra por pantalla el menu y solucita una opcion valida con ayuda del modulo 4
+/**muestra por pantalla el menu y solucita una opcion valida con ayuda del modulo 5
  * @return int $numeroOpcion
  */
 
