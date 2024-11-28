@@ -444,6 +444,20 @@ do {
             break;
         case 7:
             $palabraNueva=leerPalabra5Letras(); //modulo 4 sacado de wordix
+            $cant=count($arrayPalabras);
+            do{
+                $i=0;
+                $logico=false;
+                while($i<$cant){
+                    if($arrayPalabras[$i]==$palabraNueva){
+                        echo "la palabra que desea ingresar ya fue ingresada\n";
+                        echo "por favor ingrese otra palabra\n";
+                        $palabraNueva=leerPalabra5Letras();
+                        $logico=true;
+                    }
+                    $i++;
+                }
+            }while($logico);
             $arrayPalabras=agregarPalabra($arrayPalabras,$palabraNueva);//modulo 7
             echo "listo para seguir jugando";
             break;
