@@ -5,8 +5,12 @@ include_once("wordix.php");
 /***** DATOS DE LOS INTEGRANTES *******/
 /**************************************/
 
-/* franquez, maria ailin. FAI-4593. tecnicatura en desarrollo web. mail. Usuario Github */
-/* ****COMPLETAR***** */
+/* Franquez, Maria Ailin. 
+FAI-4593. 
+tecnicatura en desarrollo web. 
+mail: maria.franquez@est.fi.uncoma.edu.ar 
+Usuario Github: ailin-franquez */
+
 
 
 /**************************************/
@@ -76,10 +80,18 @@ function seleccionarOpcion(){
 
 
 //MODULO 4 WORDIX
-// leerPalabra5Letras()
+/** pide al usuario una palabra de 5 letras y verifica que sea correcto
+ * @return string $palabra
+ */
+//function leerPalabra5Letras()
 
 //MODULO 5  WORDIX
-// solicitarNumeroEntre($min, $max)
+/**solicita al usuario un numero y verifica que sea correcto, retorna el numero entre el minimo y el maximo
+ * @param int $min
+ * @param int $max
+ * @return int $numero
+ */
+//function solicitarNumeroEntre($min, $max)
 
 // MODULO 6 
 /** muestra por pantalla el historial de un numero de partida pedido por el jugador 
@@ -87,7 +99,7 @@ function seleccionarOpcion(){
  * @param array $partidas
  */
 function mostrarPartida($numero, $partidas){
-    //verificar numero afuera con el modulo 5
+    
     $numero=$numero-1;
     echo "****************************************************************\n";
     echo "Partida WORDIX ".($numero+1).": palabra ".$partidas[$numero]["palabra wordix"]."\n";
@@ -199,7 +211,7 @@ function resumenJugador($partidas,$jugador){
         }
         if($logico){
             echo "el jugador ingresado no existe\n";
-            $jugador=solicitarJugador(); //cambiar strtolower por el 10 cuando este listo
+            $jugador=solicitarJugador(); 
         }
     }while($logico);
 
