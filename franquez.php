@@ -329,22 +329,25 @@ function ordenarPartidas($partidas){
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
 
-//Declaración de variables:
-
-
-//Inicialización de variables:
-
-
-//Proceso:
-
 //$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
 
+//Declaración de variables:
 
+//string $jugador, $palabra, $palabraNueva
+//boolean $logico
+//array $partidas, $arrayPartidas, $partidaNueva, $estadisticas
+//int $opcion, $cantidadPalabras, $numero, $cantPartidas, $i, $numRandom, $num, $indicePartida, $cant
+
+
+//Inicialización de variables:
 
 $partidas=cargarPartidas();//modulo 2
 $arrayPalabras=cargarColeccionPalabras();//modulo 1
+
+//Proceso:
+
 do {
     $opcion =seleccionarOpcion();//modulo 3 (dentro se usa el modulo 5)
 
@@ -450,7 +453,7 @@ do {
                 $logico=false;
                 while($i<$cant){
                     if($arrayPalabras[$i]==$palabraNueva){
-                        echo "la palabra que desea ingresar ya fue ingresada\n";
+                        echo "\nla palabra que desea ingresar ya fue ingresada\n";
                         echo "por favor ingrese otra palabra\n";
                         $palabraNueva=leerPalabra5Letras();
                         $logico=true;
