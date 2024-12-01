@@ -428,7 +428,12 @@ do {
         case 4:
             $jugador=solicitarJugador(); //modulo 10
             $indicePartida=partidaGanada($partidas, $jugador);//modulo 8 (tiene la verificacion dentro)
-            mostrarPartida($indicePartida, $partidas); //modulo 6
+            if($indicePartida!=-1){
+                mostrarPartida($indicePartida, $partidas); //modulo 6
+            }elseif($indicePartida == -1){
+                echo "el jugador ".$jugador." no gano ninguna partida.";
+            }
+            
             break;
 
         case 5: 
