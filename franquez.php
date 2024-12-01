@@ -40,17 +40,17 @@ function cargarColeccionPalabras()
 function cargarPartidas(){
     //array multidimencional $coleccionPartidas
     $coleccionPartidas=[
-        ["palabrawordix"=>"QUESO","jugador"=>"majo","intentos"=> 0,"puntaje"=>0 ],
-        ["palabrawordix"=>"CASAS","jugador"=>"rudolf","intentos"=> 3,"puntaje"=>14 ],
-        ["palabrawordix"=>"QUESO","jugador"=>"pink2000","intentos"=> 6,"puntaje"=>10 ],
-        ["palabrawordix"=>"LUNAS","jugador"=>"zakku","intentos"=> 4 ,"puntaje"=> 13 ],
-        ["palabrawordix"=>"POLLO","jugador"=>"pink2000","intentos"=> 5 ,"puntaje"=>11 ],
-        ["palabrawordix"=>"GOTAS","jugador"=>"majo","intentos"=> 2 ,"puntaje"=>15 ],
-        ["palabrawordix"=>"TINTO","jugador"=>"zakku","intentos"=> 1 ,"puntaje"=>17 ],
-        ["palabrawordix"=>"GOTAS","jugador"=>"zakku","intentos"=> 3 ,"puntaje"=> 14],
-        ["palabrawordix"=>"PIANO","jugador"=>"rudolf","intentos"=> 6 ,"puntaje"=> 10],
-        ["palabrawordix"=>"PIANO","jugador"=>"majo","intentos"=> 0 ,"puntaje"=> 0],
-        ["palabrawordix"=>"VERDE","jugador"=>"pink2000","intentos"=> 3 ,"puntaje"=>14 ],
+        ["palabraWordix"=>"QUESO","jugador"=>"majo","intentos"=> 0,"puntaje"=>0 ],
+        ["palabraWordix"=>"CASAS","jugador"=>"rudolf","intentos"=> 3,"puntaje"=>14 ],
+        ["palabraWordix"=>"QUESO","jugador"=>"pink2000","intentos"=> 6,"puntaje"=>10 ],
+        ["palabraWordix"=>"LUNAS","jugador"=>"zakku","intentos"=> 4 ,"puntaje"=> 13 ],
+        ["palabraWordix"=>"POLLO","jugador"=>"pink2000","intentos"=> 5 ,"puntaje"=>11 ],
+        ["palabraWordix"=>"GOTAS","jugador"=>"majo","intentos"=> 2 ,"puntaje"=>15 ],
+        ["palabraWordix"=>"TINTO","jugador"=>"zakku","intentos"=> 1 ,"puntaje"=>17 ],
+        ["palabraWordix"=>"GOTAS","jugador"=>"zakku","intentos"=> 3 ,"puntaje"=> 14],
+        ["palabraWordix"=>"PIANO","jugador"=>"rudolf","intentos"=> 6 ,"puntaje"=> 10],
+        ["palabraWordix"=>"PIANO","jugador"=>"majo","intentos"=> 0 ,"puntaje"=> 0],
+        ["palabraWordix"=>"VERDE","jugador"=>"pink2000","intentos"=> 3 ,"puntaje"=>14 ],
     ];
     return $coleccionPartidas;
 }
@@ -102,7 +102,7 @@ function mostrarPartida($numero, $partidas){
     //array $partidas
     //int $numero
     echo "****************************************************************\n";
-    echo "Partida WORDIX ".($numero+1).": palabra ".$partidas[$numero]["palabrawordix"]."\n";
+    echo "Partida WORDIX ".($numero+1).": palabra ".$partidas[$numero]["palabraWordix"]."\n";
     echo "Jugador: ".$partidas[$numero]["jugador"]."\n";
     echo "Puntaje: ".$partidas[$numero]["puntaje"]." puntos\n";
     if($partidas[$numero]["intentos"] != 0){
@@ -152,7 +152,7 @@ function partidaGanada($partidas, $nombre){
         }
         if($logico){
             echo "el jugador ingresado no existe\n";
-            $nombre=solicitarJugador(); //cambiar strtolower por el 10 cuando este listo
+            $nombre=solicitarJugador(); 
         }
     }while($logico);
 
@@ -160,19 +160,18 @@ function partidaGanada($partidas, $nombre){
     $cant=count($partidas);
     $logico=true;
     $indice=-1;
-    while($i<$cant && $logico){
+    do{
         if ($partidas[$i]["jugador"]==$nombre){
             if($partidas[$i]["intentos"] != 0){
                 $indice=$i;
-                
-            }elseif($partidas[$i]["intentos"]== 0){
-                $indice=-1;
-                
+                $logico=false;
             }
-            $logico=false;
         }
         $i++;
-    }
+    }while($i<$cant && $logico);
+    if($logico){
+        $indice=-1;
+    }    
     return $indice;
 }
 
@@ -283,6 +282,11 @@ function solicitarJugador(){
         if(!ctype_alpha($caracteres[0])){
             echo "tipo de caracter no valido\ningrese otro nombre:\n";
             $nombre=trim(fgets(STDIN));
+            while($nombre==""){
+                echo "el nombre ingresado es invalido\n";
+                echo "ingrese otro nombre (el nombre no puede comenzar con caracteres especiales o numeros):\n";
+                $nombre=trim(fgets(STDIN));
+            }
             $nombre=strtolower($nombre);
             $caracteres=str_split($nombre);
             $logic=true;
