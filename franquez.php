@@ -268,6 +268,13 @@ function solicitarJugador(){
     //array $caracteres
     echo "ingrese el nombre de jugador (el nombre no puede comenzar con caracteres especiales o numeros):\n";
     $nombre=trim(fgets(STDIN));
+
+    while($nombre==""){//verifica que el nombre no se ingrese vacio
+        echo "el nombre ingresado es invalido\n";
+        echo "ingrese otro nombre (el nombre no puede comenzar con caracteres especiales o numeros):\n";
+        $nombre=trim(fgets(STDIN));
+    }
+
     $nombre=strtolower($nombre);
     $caracteres=str_split($nombre); //convierte una variable string en un array
     $logic=false;
@@ -386,7 +393,7 @@ do {
         case 2: 
             $cantPartidas=count($partidas);
             $jugador=solicitarJugador(); //modulo 10
-            $numRandom=rand(0,count($arrayPalabras));//rand sirve para sacar un numro aletorio, param: $min,$max. return $num
+            $numRandom=rand(0,(count($arrayPalabras)-1));//rand sirve para sacar un numro aletorio, param: $min,$max. return $num
             $palabra=$arrayPalabras[$numRandom];
             do{
                 $i=0;
@@ -394,7 +401,7 @@ do {
                 while($i<$cantPartidas){
                     if($partidas[$i]["jugador"]==$jugador){
                         if($partidas[$i]["palabraWordix"]== $palabra){
-                            $numRandom=rand(0,count($arrayPalabras));//pide un nuevo numero si se repite la palabra
+                            $numRandom=rand(0,(count($arrayPalabras)-1));//pide un nuevo numero si se repite la palabra
                             $palabra=$arrayPalabras[$numRandom];
                             $logico=true;
                         }
@@ -465,7 +472,7 @@ do {
             echo "listo para seguir jugando";
             break;
         case 8:
-            echo "salida";
+            echo "gracias por jugar";
             break;
     }
 } while ($opcion != 8);
