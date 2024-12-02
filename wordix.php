@@ -332,7 +332,9 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**calcula el putaje en base a cantidad de intentos y letras usadas
- * ****COMPLETAR***** documentación de la intefaz
+ * @param int $numIntento
+ * @param string $palabraIntento
+ * @return int $acumPuntaje
  */
 function obtenerPuntajeWordix($numIntento,$palabraIntento)
 {
