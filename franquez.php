@@ -262,7 +262,6 @@ function resumenJugador($partidas,$jugador){
  */
 function solicitarJugador(){
     //string $nombre, $jugador
-    //int
     //boolean $logic
     //array $caracteres
     echo "ingrese el nombre de jugador (el nombre no puede comenzar con caracteres especiales o numeros):\n";
