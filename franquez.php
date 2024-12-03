@@ -375,7 +375,7 @@ do {
             do{       
                 $i=0;
                 $logico=false;//por si no encuetra errores deja de iterar
-                while($i<$cantPartidas){
+                while($i<$cantPartidas && !$logico){
                     if($jugador == $partidas[$i]["jugador"]){
                         if($palabra == $partidas[$i]["palabraWordix"]){
                             echo "la palabra elegida ya fue jugada\n";
@@ -401,7 +401,7 @@ do {
             do{
                 $i=0;
                 $logico=false;
-                while($i<$cantPartidas){
+                while($i<$cantPartidas && !$logico){
                     if($partidas[$i]["jugador"]==$jugador){
                         if($partidas[$i]["palabraWordix"]== $palabra){
                             $numRandom=rand(0,(count($arrayPalabras)-1));//pide un nuevo numero si se repite la palabra
@@ -466,7 +466,7 @@ do {
             do{
                 $i=0;
                 $logico=false;
-                while($i<$cant){
+                while($i<$cant && !$logico){
                     if($arrayPalabras[$i]==$palabraNueva){
                         echo "\nla palabra que desea ingresar ya fue ingresada\n";
                         echo "por favor ingrese otra palabra\n";
